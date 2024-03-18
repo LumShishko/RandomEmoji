@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+    <div id="emoji-container">
+        <h1>Loading Emoji...</h1>
+    </div>
+
+<button id="emojibutton" onclick="fetchAndDisplay()">Get Random Emoji</button>
+
+<script>
+    function fetchAndDisplay(){
+    fetch('https://emojihub.yurace.pro/api/random')
+    .then(response => response.json())
+    .then(emoji => {
+        const emojiContainer = document.getElementById('emoji-container')
+        emojiContainer.innerHTML = `
+        <p>Name: "${emoji.name}"
+        <p>Category: "${emoji.category}"</p>
+        <p>Group: "${emoji.group}"</p>
+        <code>Emoji: "${emoji.htmlCode}"</code>
+    `;
+        
+    })
+    }
+    </script>
+</body>
+</html>
